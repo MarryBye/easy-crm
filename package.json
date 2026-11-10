@@ -1,0 +1,30 @@
+{
+  "name": "taxi-crm",
+  "version": "1.0.0",
+  "private": true,
+  "packageManager": "pnpm@12.10.1",
+  "scripts": {
+    "dev": "turbo run dev",
+    "build": "turbo run build",
+    "lint": "turbo run lint",
+    "lint:fix": "turbo run lint:fix",
+    "check-types": "turbo run check-types",
+    "test": "turbo run test",
+    "format": "prettier --write .",
+    "format:check": "prettier --check .",
+    "clean": "turbo run clean",
+    "dev:backend": "turbo run dev --filter=@taxi-crm/backend",
+    "dev:frontend": "turbo run dev --filter=@taxi-crm/frontend",
+    "build:backend": "turbo run build --filter=@taxi-crm/backend",
+    "build:frontend": "turbo run build --filter=@taxi-crm/frontend",
+    "docker:up": "docker compose up -d",
+    "docker:build": "docker compose up --build -d",
+    "docker:down": "docker compose down",
+    "docker:logs": "docker compose logs -f"
+  },
+  "devDependencies": {
+    "prettier": "^3.5.1",
+    "turbo": "^2.11.7",
+    "typescript": "^5.7.3"
+  }
+}

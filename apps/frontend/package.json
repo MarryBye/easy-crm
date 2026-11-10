@@ -1,40 +1,36 @@
 {
-  "name": "vite-react-boilerplate",
-  "author": "Ricardo Valdovinos <ricardovaldovinos1996@gmail.com>",
-  "description": "A production ready, batteries included starter template for Vite + React projects",
+  "name": "@taxi-crm/frontend",
+  "author": "Viktor Lukianov",
+  "description": "Taxi CRM frontend client built with React 19, Vite, TanStack Router, TanStack Query, and TanStack Table.",
   "keywords": [
-    "vite",
     "react",
-    "boilerplate",
-    "starter",
-    "template"
+    "vite",
+    "tanstack-router",
+    "tanstack-query",
+    "tanstack-table",
+    "taxi-crm",
+    "typescript"
   ],
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/RicardoValdovinos/vite-react-boilerplate"
-  },
   "license": "MIT",
   "version": "1.0.0",
   "type": "module",
   "scripts": {
-    "setup": "git init && npx husky init && npx playwright install && shx rm .husky/pre-commit",
     "format": "prettier \"src/**/*.{ts,tsx}\" --write",
     "lint": "eslint --max-warnings 0",
     "lint:fix": "eslint --max-warnings 0 --fix",
+    "check-types": "tsc --noEmit",
     "dev": "vite",
     "storybook": "storybook dev -p 6006",
     "storybook:setup": "node node_modules/@storybook/addon-styling/bin/postinstall.js",
     "storybook:build": "storybook build",
-    "test": "vitest run src/ && playwright test",
+    "test": "vitest run src/",
+    "test:all": "vitest run src/ && playwright test",
     "test:unit": "vitest src/",
     "test:unit:coverage": "vitest --coverage src/",
     "test:e2e": "playwright test",
     "test:e2e:report": "playwright show-report",
     "build": "tsc && vite build",
-    "preview": "vite preview",
-    "commitlint": "commitlint --edit",
-    "commitizen": "exec < /dev/tty && git cz --hook || true",
-    "prepare": "husky"
+    "preview": "vite preview"
   },
   "dependencies": {
     "@hookform/resolvers": "^5.2.0",
@@ -116,10 +112,5 @@
     "vite": "7.0.6",
     "vite-plugin-static-copy": "^3.1.1",
     "vitest": "3.2.4"
-  },
-  "config": {
-    "commitizen": {
-      "path": "./node_modules/cz-conventional-changelog"
-    }
   }
 }
