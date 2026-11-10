@@ -23,8 +23,15 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(getLanguage);
 
 try {
-  const accessLogStream = fs.createWriteStream(path.join(__dirname, '../log/access.log'), {
+  const logDirectory = path.join(__dirname, '../log');
+  if (!fs.existsSync(logDirectory)) {
+    fs.mkdirSync(logDirectory, { recursive: true });
+  }
+  const accessLogStream = fs.createWriteStream(path.join(logDirectory, 'access.log'), {
     flags: 'a',
+  });
+  accessLogStream.on('error', (err) => {
+    console.warn('Access log stream error:', err);
   });
   app.use(morgan('combined', { stream: accessLogStream }));
 } catch (err) {
@@ -37,10 +44,11 @@ app.use('/', routes);
 app.use(errorHandler);
 
 const port = process.env.PORT || 4000;
-app.listen(port, () => {
-  console.log(`Server running on port ${port}`);
-});
-
-(async () => {
-  await dbCreateConnection();
-})();
+if (process.env.NODE_ENV !== 'test') {
+  app.listen(port, () => {
+    console.log(`Server running on port ${port}`);
+  });
+  (async () => {
+    await dbCreateConnection();
+  })();
+}

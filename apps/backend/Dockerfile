@@ -20,8 +20,9 @@ ENV NODE_ENV=production
 
 COPY package.json ./
 
-# Install dependencies including ts-node for runtime migration/seed execution
-RUN npm install && npm cache clean --force
+# Install dependencies including ts-node and cross-env for runtime migration/seed execution
+RUN npm install --include=dev && npm cache clean --force
+RUN mkdir -p /app/log
 
 COPY --from=builder /app/dist ./dist
 COPY --from=builder /app/src ./src

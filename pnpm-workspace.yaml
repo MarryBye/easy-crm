@@ -5,3 +5,4 @@ allowBuilds:
   esbuild: true
   '@swc/core': true
   bcrypt: true
+  '@tailwindcss/oxide': true
