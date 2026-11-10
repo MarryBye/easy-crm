@@ -1,20 +1,25 @@
-.idea/
-.vscode/
-.DS_Store
-
+# Dependencies
 node_modules/
+
+# Build outputs
 build/
 dist/
 tmp/
 temp/
 
+# Environment
+.env
+.env.*
+!.env.example
+
+# IDE and OS
+.idea/
+.vscode/
+.DS_Store
+
+# Logs and DB
 database/*
-!database/.gitkeep 
-
+!database/.gitkeep
 log/*
-!log/.gitkeep 
+!log/.gitkeep
 *.log
-
-# keep config folder with env files ONLY for demo purposes
-# config/
-# .env

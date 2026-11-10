@@ -1,0 +1,47 @@
+# Dependencies
+node_modules/
+.pnpm-store/
+
+# Build outputs
+dist/
+dist-ssr/
+build/
+*.tsbuildinfo
+.turbo/
+
+# Environment files
+.env
+.env.*
+!.env.example
+
+# Logs
+logs/
+log/
+*.log
+npm-debug.log*
+yarn-debug.log*
+pnpm-debug.log*
+
+# Test and coverage artifacts
+coverage/
+test-results/
+playwright-report/
+.playwright/
+storybook-static/
+
+# Editor and OS artifacts
+.idea/
+.vscode/
+.DS_Store
+Thumbs.db
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
+
+# Database and temp files
+database/*
+!database/.gitkeep
+tmp/
+temp/
