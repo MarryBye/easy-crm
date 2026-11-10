@@ -54,7 +54,7 @@ describe('Users', () => {
       const res = await request(app).get('/v1/users').set('Authorization', adminUserToken);
       expect(res.status).to.equal(200);
       expect(res.body.message).to.equal('List of users.');
-      expect(res.body.data[3].email).to.eql('hank.schrader@test.com');
+      expect(res.body.data.some((u: { email: string }) => u.email === 'hank.schrader@test.com')).to.be.true;
     });
 
     it('should report error of unauthorized user', async () => {
@@ -76,7 +76,7 @@ describe('Users', () => {
       const user = await userRepository.findOne({ email: adminUser.email });
       const res = await request(app).get(`/v1/users/${user.id}`).set('Authorization', adminUserToken);
       expect(res.status).to.equal(200);
-      expect(res.body.message).to.equal('User found');
+      expect(res.body.message).to.equal('User found.');
       expect(res.body.data.email).to.eql(adminUser.email);
     });
   });

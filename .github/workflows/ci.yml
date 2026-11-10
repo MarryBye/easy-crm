@@ -12,8 +12,32 @@ concurrency:
 
 jobs:
   validate:
-    name: Lint, Typecheck & Build
+    name: Lint, Typecheck, Build & Test
     runs-on: ubuntu-latest
+
+    services:
+      postgres:
+        image: postgres:16-alpine
+        env:
+          POSTGRES_USER: postgres
+          POSTGRES_PASSWORD: postgres
+          POSTGRES_DB: taxi_crm
+        ports:
+          - 5432:5432
+        options: >-
+          --health-cmd "pg_isready -U postgres -d taxi_crm"
+          --health-interval 10s
+          --health-timeout 5s
+          --health-retries 5
+
+    env:
+      PG_HOST: localhost
+      PG_PORT: 5432
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: taxi_crm
+      JWT_SECRET: ci_test_jwt_secret_key
+      JWT_EXPIRATION: 120m
 
     steps:
       - name: Checkout repository
@@ -43,5 +67,13 @@ jobs:
       - name: Build applications
         run: pnpm build
 
-      - name: Unit Tests
+      - name: Run Database Migrations & Seeds
+        run: |
+          pnpm --filter @taxi-crm/backend run migration:run:dev
+          pnpm --filter @taxi-crm/backend run seed:run:dev
+
+      - name: Run Backend Tests
+        run: pnpm --filter @taxi-crm/backend run test
+
+      - name: Run Frontend Tests
         run: pnpm --filter @taxi-crm/frontend run test
