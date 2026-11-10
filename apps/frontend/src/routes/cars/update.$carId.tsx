@@ -57,7 +57,7 @@ function RouteComponent() {
     <div className="p-6 max-w-xl">
       <div className="mb-4">
         <div>
-          <Link to={`/cars/${car.id}`} className="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600">&larr; Back to car</Link>
+          <Link to={`/cars/${car.id}` as any} className="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600">&larr; Back to car</Link>
         </div>
       </div>
 
@@ -91,8 +91,8 @@ function RouteComponent() {
         </div>
 
         <div className="pt-2 flex items-center space-x-2">
-          <button type="submit" disabled={update.isLoading} className="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600">
-            {update.isLoading ? 'Saving...' : 'Save'}
+          <button type="submit" disabled={update.isPending} className="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600">
+            {update.isPending ? 'Saving...' : 'Save'}
           </button>
         </div>
       </form>

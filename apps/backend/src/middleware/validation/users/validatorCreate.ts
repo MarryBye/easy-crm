@@ -7,27 +7,27 @@ export const validatorCreate = async (req: Request, res: Response, next: NextFun
   const errors: string[] = [];
 
   if (!email) {
-    errors.push("Email is required.");
+    errors.push('Email is required.');
   } else if (typeof email !== 'string') {
-    errors.push("Email must be a string.");
+    errors.push('Email must be a string.');
   }
 
   if (!name) {
-    errors.push("Name is required.");
+    errors.push('Name is required.');
   } else if (typeof name !== 'string') {
-    errors.push("Name must be a string.");
+    errors.push('Name must be a string.');
   }
 
   if (!username) {
-    errors.push("Username is required.");
+    errors.push('Username is required.');
   } else if (typeof username !== 'string') {
-    errors.push("Username must be a string.");
+    errors.push('Username must be a string.');
   }
 
   if (!password) {
-    errors.push("Password is required.");
+    errors.push('Password is required.');
   } else if (typeof password !== 'string') {
-    errors.push("Password must be a string.");
+    errors.push('Password must be a string.');
   }
 
   const error_string = errors.join('\n');

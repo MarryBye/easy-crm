@@ -1,4 +1,4 @@
-import { useMutation, useQueryClient } from '@tanstack/react-query';
+import { useMutation } from '@tanstack/react-query';
 import { useNavigate } from '@tanstack/react-router';
 import apiClient from '@/lib/axios';
 import { useAuthStore } from '@/store/useAuthStore';
@@ -25,9 +25,10 @@ export const useLogin = () => {
   return useMutation({
     mutationFn: login,
     onSuccess: (data) => {
-      const token = data.data.split(' ')[1];
+      const parts = data.data.split(' ');
+      const token = parts[1] || parts[0] || null;
       setToken(token);
       navigate({ to: '/users/list' });
-    }
+    },
   });
 };

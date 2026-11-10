@@ -8,9 +8,9 @@ export const validatorDestroy = async (req: Request, res: Response, next: NextFu
   const errors = [];
 
   if (!id) {
-    errors.push("No id parameter provided.");
+    errors.push('No id parameter provided.');
   }
-  
+
   const error_string = errors.join('\n');
 
   if (errors.length > 0) {

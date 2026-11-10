@@ -1,5 +1,5 @@
-import { Car } from '../orm/entities/cars/Car';
 import { UserResponseDTO } from '../dto/user_response_dto';
+import { Car } from '../orm/entities/cars/Car';
 import { Car_class, Car_status } from '../orm/entities/cars/types';
 
 export class CarResponseDTO {
@@ -18,4 +18,4 @@ export class CarResponseDTO {
     this.car_status = car.car_status ?? undefined;
     this.driver = car.driver ? new UserResponseDTO(car.driver) : null;
   }
-};
+}

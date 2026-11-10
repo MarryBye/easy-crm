@@ -40,14 +40,14 @@ export class RideOrder {
   @Column({
     type: 'timestamp',
     default: () => 'CURRENT_TIMESTAMP',
-    nullable: true
+    nullable: true,
   })
   start_date: Date;
 
   @Column({
     type: 'timestamp',
     default: () => 'CURRENT_TIMESTAMP',
-    nullable: true
+    nullable: true,
   })
   end_date: Date;
 

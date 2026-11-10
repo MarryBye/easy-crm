@@ -8,15 +8,15 @@ export const validatorEdit = async (req: Request, res: Response, next: NextFunct
   const errors: string[] = [];
 
   if (!id) {
-    errors.push("No id parameter provided.");
+    errors.push('No id parameter provided.');
   }
 
   if (username !== undefined && typeof username !== 'string') {
-    errors.push("Username must be a string.");
+    errors.push('Username must be a string.');
   }
 
   if (name !== undefined && typeof name !== 'string') {
-    errors.push("Name must be a string.");
+    errors.push('Name must be a string.');
   }
 
   const error_string = errors.join('\n');

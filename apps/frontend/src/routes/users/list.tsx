@@ -1,4 +1,4 @@
-import { Link, createFileRoute, useParams, useNavigate } from '@tanstack/react-router';
+import { Link, createFileRoute, useNavigate } from '@tanstack/react-router';
 import { useUsers, useDeleteUser } from '@/features/users/api';
 
 export const Route = createFileRoute('/users/list')({
@@ -23,7 +23,6 @@ function UsersListPage() {
 
   return (
     <div className="p-4">
-      
       <div className="flex justify-between items-center mb-4">
         <div className="flex row gap-2 items-center">
             <h1 className="text-2xl font-bold">TaxiCRM</h1>
@@ -59,47 +58,46 @@ function UsersListPage() {
         </thead>
 
         <tbody>
-          {
-            users.map((user) => (
-              <tr key={user.id} className="hover:bg-gray-100">
-                <td className="py-2 px-4 border-b">{user.id}</td>
-                <td className="py-2 px-4 border-b">{user.email}</td>
-                <td className="py-2 px-4 border-b">{user.username}</td>
-                <td className="py-2 px-4 border-b">{user.name}</td>
-                <td className="py-2 px-4 border-b">{user.language}</td>
-                <td className="py-2 px-4 border-b">{user.role}</td>
-                <td className="py-2 px-4 border-b">
-                  {user.car ? (
-                    <Link to={`/cars/${user.car.id}`} className="text-blue-500 hover:underline">
-                      {user.car.mark} {user.car.model}
-                    </Link>
-                  ) : (
-                    'No Car'
-                  )}
-                </td>
-                <td className="py-2 px-4 border-b">
-                  <Link
-                    to={`/users/update/${user.id}`}
-                    className="cursor-pointer text-yellow-500 px-2 py-1"
-                  >
-                    Edit
+          {users?.map((user) => (
+            <tr key={user.id} className="hover:bg-gray-100">
+              <td className="py-2 px-4 border-b">{user.id}</td>
+              <td className="py-2 px-4 border-b">{user.email}</td>
+              <td className="py-2 px-4 border-b">{user.username}</td>
+              <td className="py-2 px-4 border-b">{user.name}</td>
+              <td className="py-2 px-4 border-b">{user.language}</td>
+              <td className="py-2 px-4 border-b">{user.role}</td>
+              <td className="py-2 px-4 border-b">
+                {user.car ? (
+                  <Link to={`/cars/${user.car.id}` as any} className="text-blue-500 hover:underline">
+                    {user.car.mark} {user.car.model}
                   </Link>
-                  <Link
-                    onClick={() => handleDelete(String(user.id))}
-                    className="cursor-pointer text-red-500 px-2 py-1"
-                  >
-                    Delete
-                  </Link>
-                  <Link
-                    to={`/users/${user.id}`}
-                    className="cursor-pointer text-blue-500 px-2 py-1"
-                  >
-                    Details
-                  </Link>
-                </td>
-              </tr>
-            ))
-          }
+                ) : (
+                  'No Car'
+                )}
+              </td>
+              <td className="py-2 px-4 border-b">
+                <Link
+                  to={`/users/update/${user.id}` as any}
+                  className="cursor-pointer text-yellow-500 px-2 py-1"
+                >
+                  Edit
+                </Link>
+                <button
+                  type="button"
+                  onClick={() => handleDelete(String(user.id))}
+                  className="cursor-pointer text-red-500 px-2 py-1 bg-transparent border-none"
+                >
+                  Delete
+                </button>
+                <Link
+                  to={`/users/${user.id}` as any}
+                  className="cursor-pointer text-blue-500 px-2 py-1"
+                >
+                  Details
+                </Link>
+              </td>
+            </tr>
+          ))}
         </tbody>
       </table>
     </div>

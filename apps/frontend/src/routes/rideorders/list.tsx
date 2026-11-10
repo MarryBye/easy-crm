@@ -31,11 +31,11 @@ function RideOrdersListPage() {
           <Link to="/rideorders/list" className="text-blue-500 hover:underline">Orders</Link>
         </div>
         <div className="buttons-group">
-          <Link to="/rideorders/new" className="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600">
-            Create New Ride Order
-          </Link>
+          <Link to="/rideorders/new" className="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600">Create New Ride Order</Link>
         </div>
       </div>
+
+      <h1 className="text-2xl font-semibold mb-4">Ride Orders</h1>
 
       <table className="min-w-full bg-white">
         <thead>
@@ -50,7 +50,6 @@ function RideOrdersListPage() {
             <th className="py-2 px-4 border-b">Actions</th>
           </tr>
         </thead>
-
         <tbody>
           {rideOrders?.map((ro) => (
             <tr key={ro.id} className="hover:bg-gray-100">
@@ -58,37 +57,37 @@ function RideOrdersListPage() {
               <td className="py-2 px-4 border-b">{ro.order_status}</td>
               <td className="py-2 px-4 border-b">{ro.payment_type}</td>
               <td className="py-2 px-4 border-b">
-                <Link to={`/users/${ro.client?.id}`} className="text-blue-500 hover:underline">
+                <Link to={`/users/${ro.client?.id}` as any} className="text-blue-500 hover:underline">
                   {ro.client?.name ?? 'No Client'}
                 </Link>
               </td>
               <td className="py-2 px-4 border-b">
                 {
                   ro.driver ? (
-                    <Link to={`/users/${ro.driver.id}`} className="text-blue-500 hover:underline">
+                    <Link to={`/users/${ro.driver.id}` as any} className="text-blue-500 hover:underline">
                       {ro.driver.name}
                     </Link>
                   ) : 'No Driver'
                 }
-
               </td>
               <td className="py-2 px-4 border-b">{ro.start_date}</td>
               <td className="py-2 px-4 border-b">{ro.end_date ?? '—'}</td>
               <td className="py-2 px-4 border-b">
                 <Link
-                  to={`/rideorders/update/${ro.id}`}
+                  to={`/rideorders/update/${ro.id}` as any}
                   className="cursor-pointer text-yellow-500 px-2 py-1"
                 >
                   Edit
                 </Link>
-                <Link
+                <button
+                  type="button"
                   onClick={() => handleDelete(Number(ro.id))}
-                  className="cursor-pointer text-red-500 px-2 py-1"
+                  className="cursor-pointer text-red-500 px-2 py-1 bg-transparent border-none"
                 >
                   Delete
-                </Link>
+                </button>
                 <Link
-                  to={`/rideorders/${ro.id}`}
+                  to={`/rideorders/${ro.id}` as any}
                   className="cursor-pointer text-blue-500 px-2 py-1"
                 >
                   Details

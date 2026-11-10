@@ -2,6 +2,7 @@
 import { Request, Response, NextFunction } from 'express';
 
 import { CarService } from 'service/CarService';
+
 import { CarResponseDTO } from '../../dto/car_response_dto';
 
 export const list = async (req: Request, res: Response, next: NextFunction) => {
@@ -12,7 +13,7 @@ export const list = async (req: Request, res: Response, next: NextFunction) => {
     return next(error);
   }
 
-  const carDTOs = result.map(car => new CarResponseDTO(car));
+  const carDTOs = result.map((car) => new CarResponseDTO(car));
 
   res.customSuccess(200, 'List of cars.', carDTOs);
 };

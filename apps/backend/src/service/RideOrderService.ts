@@ -1,28 +1,29 @@
 import { getRepository } from 'typeorm';
 
-import { RideOrder } from '../orm/entities/ride_orders/RideOrder';
-import { User } from '../orm/entities/users/User';
-import { Order_status, Payment_type } from '../orm/entities/ride_orders/types';
 import { CustomError } from 'utils/response/custom-error/CustomError';
+
+import { RideOrder } from '../orm/entities/ride_orders/RideOrder';
+import { Order_status, Payment_type } from '../orm/entities/ride_orders/types';
+import { User } from '../orm/entities/users/User';
 
 class RideOrderService {
   private rideOrderRepository = getRepository(RideOrder);
   private userRepository = getRepository(User);
 
   private makeCustomError(errors: string[]) {
-    return new CustomError(404, "Raw", errors.join("\n"));
+    return new CustomError(404, 'Raw', errors.join('\n'));
   }
 
   async list(): Promise<{ result: RideOrder[] | null; error: CustomError | null }> {
-    let data = { result: null, error: null };
-    let errors = [];
+    const data = { result: null, error: null };
+    const errors = [];
 
     const rideorders = await this.rideOrderRepository.find({
       relations: ['driver', 'client'],
     });
 
     if (rideorders.length === 0) {
-      errors.push("No ride orders found.");
+      errors.push('No ride orders found.');
     }
 
     if (errors.length === 0) {
@@ -35,15 +36,15 @@ class RideOrderService {
   }
 
   async show(id: number | string): Promise<{ result: RideOrder | null; error: CustomError | null }> {
-    let data = { result: null, error: null };
-    let errors = [];
+    const data = { result: null, error: null };
+    const errors = [];
 
     const rideorder = await this.rideOrderRepository.findOne(id, {
       relations: ['driver', 'client'],
     });
 
     if (!rideorder) {
-      errors.push("Ride order not found.");
+      errors.push('Ride order not found.');
     }
 
     if (errors.length === 0) {
@@ -56,21 +57,21 @@ class RideOrderService {
   }
 
   async create(
-    order_status: Order_status, 
-    payment_type: Payment_type, 
-    clientId: number | string, 
-    driverId?: number | string, 
-    start_date?: Date, 
-    end_date?: Date
+    order_status: Order_status,
+    payment_type: Payment_type,
+    clientId: number | string,
+    driverId?: number | string,
+    start_date?: Date,
+    end_date?: Date,
   ): Promise<{ result: RideOrder | null; error: CustomError | null }> {
-    let data = { result: null, error: null };
-    let errors = [];
+    const data = { result: null, error: null };
+    const errors = [];
 
     try {
       const rideorder = this.rideOrderRepository.create();
       rideorder.order_status = order_status;
       rideorder.payment_type = payment_type;
-      
+
       const client = await this.userRepository.findOne(clientId);
       if (!client) {
         errors.push(`Client with id ${clientId} not found.`);
@@ -90,7 +91,7 @@ class RideOrderService {
       if (start_date !== undefined) {
         rideorder.start_date = new Date(start_date);
       }
-      
+
       if (end_date !== undefined) {
         rideorder.end_date = new Date(end_date);
       }
@@ -112,21 +113,21 @@ class RideOrderService {
 
   async edit(
     id: number | string,
-    order_status?: Order_status, 
-    payment_type?: Payment_type, 
-    clientId?: number | string, 
-    driverId?: number | string, 
-    start_date?: Date, 
-    end_date?: Date
+    order_status?: Order_status,
+    payment_type?: Payment_type,
+    clientId?: number | string,
+    driverId?: number | string,
+    start_date?: Date,
+    end_date?: Date,
   ): Promise<{ result: RideOrder | null; error: CustomError | null }> {
-    let data = { result: null, error: null };
-    let errors = [];
+    const data = { result: null, error: null };
+    const errors = [];
 
     try {
       const rideorder = await this.rideOrderRepository.findOne(id);
-      
+
       if (!rideorder) {
-        errors.push("Ride order not found.");
+        errors.push('Ride order not found.');
         data.error = this.makeCustomError(errors);
         return data;
       }
@@ -181,12 +182,12 @@ class RideOrderService {
   }
 
   async destroy(id: number | string): Promise<{ result: RideOrder | null; error: CustomError | null }> {
-    let data = { result: null, error: null };
-    let errors = [];
+    const data = { result: null, error: null };
+    const errors = [];
 
     try {
       const { result, error } = await this.show(id);
-      
+
       if (error) {
         data.error = error;
         return data;

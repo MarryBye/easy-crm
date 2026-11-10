@@ -1,10 +1,10 @@
-import {MigrationInterface, QueryRunner} from "typeorm";
+import { MigrationInterface, QueryRunner } from 'typeorm';
 
 export class CustomMigration1764525259100 implements MigrationInterface {
-    name = 'CustomMigration1764525259100'
+  name = 'CustomMigration1764525259100';
 
-    public async up(queryRunner: QueryRunner): Promise<void> {
-        await queryRunner.query(`
+  public async up(queryRunner: QueryRunner): Promise<void> {
+    await queryRunner.query(`
             CREATE TABLE "cars" (
                 "id" SERIAL NOT NULL,
                 "model" character varying(32) NOT NULL,
@@ -18,7 +18,7 @@ export class CustomMigration1764525259100 implements MigrationInterface {
                 CONSTRAINT "PK_fc218aa84e79b477d55322271b6" PRIMARY KEY ("id")
             )
         `);
-        await queryRunner.query(`
+    await queryRunner.query(`
             CREATE TABLE "users" (
                 "id" SERIAL NOT NULL,
                 "email" character varying NOT NULL,
@@ -34,7 +34,7 @@ export class CustomMigration1764525259100 implements MigrationInterface {
                 CONSTRAINT "PK_a3ffb1c0c8416b9fc6f907b7433" PRIMARY KEY ("id")
             )
         `);
-        await queryRunner.query(`
+    await queryRunner.query(`
             CREATE TABLE "ride_orders" (
                 "id" SERIAL NOT NULL,
                 "order_status" character varying(32) NOT NULL DEFAULT 'In Progress',
@@ -48,40 +48,39 @@ export class CustomMigration1764525259100 implements MigrationInterface {
                 CONSTRAINT "PK_187f9e20b21a53a077a41383514" PRIMARY KEY ("id")
             )
         `);
-        await queryRunner.query(`
+    await queryRunner.query(`
             ALTER TABLE "cars"
             ADD CONSTRAINT "FK_1403195e3b80cf083352758adb0" FOREIGN KEY ("driver_id") REFERENCES "users"("id") ON DELETE
             SET NULL ON UPDATE NO ACTION
         `);
-        await queryRunner.query(`
+    await queryRunner.query(`
             ALTER TABLE "ride_orders"
             ADD CONSTRAINT "FK_9649a91a2a9ef685f22130bbd56" FOREIGN KEY ("driver_id") REFERENCES "users"("id") ON DELETE CASCADE ON UPDATE NO ACTION
         `);
-        await queryRunner.query(`
+    await queryRunner.query(`
             ALTER TABLE "ride_orders"
             ADD CONSTRAINT "FK_cbc21505a8c7e2d91aa7862bf13" FOREIGN KEY ("client_id") REFERENCES "users"("id") ON DELETE CASCADE ON UPDATE NO ACTION
         `);
-    }
+  }
 
-    public async down(queryRunner: QueryRunner): Promise<void> {
-        await queryRunner.query(`
+  public async down(queryRunner: QueryRunner): Promise<void> {
+    await queryRunner.query(`
             ALTER TABLE "ride_orders" DROP CONSTRAINT "FK_cbc21505a8c7e2d91aa7862bf13"
         `);
-        await queryRunner.query(`
+    await queryRunner.query(`
             ALTER TABLE "ride_orders" DROP CONSTRAINT "FK_9649a91a2a9ef685f22130bbd56"
         `);
-        await queryRunner.query(`
+    await queryRunner.query(`
             ALTER TABLE "cars" DROP CONSTRAINT "FK_1403195e3b80cf083352758adb0"
         `);
-        await queryRunner.query(`
+    await queryRunner.query(`
             DROP TABLE "ride_orders"
         `);
-        await queryRunner.query(`
+    await queryRunner.query(`
             DROP TABLE "users"
         `);
-        await queryRunner.query(`
+    await queryRunner.query(`
             DROP TABLE "cars"
         `);
-    }
-
+  }
 }

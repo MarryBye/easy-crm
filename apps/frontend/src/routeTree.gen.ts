@@ -10,68 +10,23 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
-import { Route as UsersNewRouteImport } from './routes/users/new'
-import { Route as UsersListRouteImport } from './routes/users/list'
-import { Route as UsersUserIdRouteImport } from './routes/users/$userId'
-import { Route as RideordersNewRouteImport } from './routes/rideorders/new'
-import { Route as RideordersListRouteImport } from './routes/rideorders/list'
-import { Route as RideordersRideOrderIdRouteImport } from './routes/rideorders/$rideOrderId'
-import { Route as CarsNewRouteImport } from './routes/cars/new'
-import { Route as CarsListRouteImport } from './routes/cars/list'
-import { Route as CarsCarIdRouteImport } from './routes/cars/$carId'
 import { Route as AuthLoginRouteImport } from './routes/auth/login'
-import { Route as UsersUpdateUserIdRouteImport } from './routes/users/update.$userId'
-import { Route as RideordersUpdateRideOrderIdRouteImport } from './routes/rideorders/update.$rideOrderId'
+import { Route as CarsCarIdRouteImport } from './routes/cars/$carId'
+import { Route as CarsListRouteImport } from './routes/cars/list'
+import { Route as CarsNewRouteImport } from './routes/cars/new'
+import { Route as RideordersRideOrderIdRouteImport } from './routes/rideorders/$rideOrderId'
+import { Route as RideordersListRouteImport } from './routes/rideorders/list'
+import { Route as RideordersNewRouteImport } from './routes/rideorders/new'
+import { Route as UsersUserIdRouteImport } from './routes/users/$userId'
+import { Route as UsersListRouteImport } from './routes/users/list'
+import { Route as UsersNewRouteImport } from './routes/users/new'
 import { Route as CarsUpdateCarIdRouteImport } from './routes/cars/update.$carId'
+import { Route as RideordersUpdateRideOrderIdRouteImport } from './routes/rideorders/update.$rideOrderId'
+import { Route as UsersUpdateUserIdRouteImport } from './routes/users/update.$userId'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const UsersNewRoute = UsersNewRouteImport.update({
-  id: '/users/new',
-  path: '/users/new',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const UsersListRoute = UsersListRouteImport.update({
-  id: '/users/list',
-  path: '/users/list',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const UsersUserIdRoute = UsersUserIdRouteImport.update({
-  id: '/users/$userId',
-  path: '/users/$userId',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const RideordersNewRoute = RideordersNewRouteImport.update({
-  id: '/rideorders/new',
-  path: '/rideorders/new',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const RideordersListRoute = RideordersListRouteImport.update({
-  id: '/rideorders/list',
-  path: '/rideorders/list',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const RideordersRideOrderIdRoute = RideordersRideOrderIdRouteImport.update({
-  id: '/rideorders/$rideOrderId',
-  path: '/rideorders/$rideOrderId',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const CarsNewRoute = CarsNewRouteImport.update({
-  id: '/cars/new',
-  path: '/cars/new',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const CarsListRoute = CarsListRouteImport.update({
-  id: '/cars/list',
-  path: '/cars/list',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const CarsCarIdRoute = CarsCarIdRouteImport.update({
-  id: '/cars/$carId',
-  path: '/cars/$carId',
   getParentRoute: () => rootRouteImport,
 } as any)
 const AuthLoginRoute = AuthLoginRouteImport.update({
@@ -79,9 +34,54 @@ const AuthLoginRoute = AuthLoginRouteImport.update({
   path: '/auth/login',
   getParentRoute: () => rootRouteImport,
 } as any)
-const UsersUpdateUserIdRoute = UsersUpdateUserIdRouteImport.update({
-  id: '/users/update/$userId',
-  path: '/users/update/$userId',
+const CarsCarIdRoute = CarsCarIdRouteImport.update({
+  id: '/cars/$carId',
+  path: '/cars/$carId',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const CarsListRoute = CarsListRouteImport.update({
+  id: '/cars/list',
+  path: '/cars/list',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const CarsNewRoute = CarsNewRouteImport.update({
+  id: '/cars/new',
+  path: '/cars/new',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const RideordersRideOrderIdRoute = RideordersRideOrderIdRouteImport.update({
+  id: '/rideorders/$rideOrderId',
+  path: '/rideorders/$rideOrderId',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const RideordersListRoute = RideordersListRouteImport.update({
+  id: '/rideorders/list',
+  path: '/rideorders/list',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const RideordersNewRoute = RideordersNewRouteImport.update({
+  id: '/rideorders/new',
+  path: '/rideorders/new',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const UsersUserIdRoute = UsersUserIdRouteImport.update({
+  id: '/users/$userId',
+  path: '/users/$userId',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const UsersListRoute = UsersListRouteImport.update({
+  id: '/users/list',
+  path: '/users/list',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const UsersNewRoute = UsersNewRouteImport.update({
+  id: '/users/new',
+  path: '/users/new',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const CarsUpdateCarIdRoute = CarsUpdateCarIdRouteImport.update({
+  id: '/cars/update/$carId',
+  path: '/cars/update/$carId',
   getParentRoute: () => rootRouteImport,
 } as any)
 const RideordersUpdateRideOrderIdRoute =
@@ -90,9 +90,9 @@ const RideordersUpdateRideOrderIdRoute =
     path: '/rideorders/update/$rideOrderId',
     getParentRoute: () => rootRouteImport,
   } as any)
-const CarsUpdateCarIdRoute = CarsUpdateCarIdRouteImport.update({
-  id: '/cars/update/$carId',
-  path: '/cars/update/$carId',
+const UsersUpdateUserIdRoute = UsersUpdateUserIdRouteImport.update({
+  id: '/users/update/$userId',
+  path: '/users/update/$userId',
   getParentRoute: () => rootRouteImport,
 } as any)
 
@@ -222,60 +222,11 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/users/new': {
-      id: '/users/new'
-      path: '/users/new'
-      fullPath: '/users/new'
-      preLoaderRoute: typeof UsersNewRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/users/list': {
-      id: '/users/list'
-      path: '/users/list'
-      fullPath: '/users/list'
-      preLoaderRoute: typeof UsersListRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/users/$userId': {
-      id: '/users/$userId'
-      path: '/users/$userId'
-      fullPath: '/users/$userId'
-      preLoaderRoute: typeof UsersUserIdRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/rideorders/new': {
-      id: '/rideorders/new'
-      path: '/rideorders/new'
-      fullPath: '/rideorders/new'
-      preLoaderRoute: typeof RideordersNewRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/rideorders/list': {
-      id: '/rideorders/list'
-      path: '/rideorders/list'
-      fullPath: '/rideorders/list'
-      preLoaderRoute: typeof RideordersListRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/rideorders/$rideOrderId': {
-      id: '/rideorders/$rideOrderId'
-      path: '/rideorders/$rideOrderId'
-      fullPath: '/rideorders/$rideOrderId'
-      preLoaderRoute: typeof RideordersRideOrderIdRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/cars/new': {
-      id: '/cars/new'
-      path: '/cars/new'
-      fullPath: '/cars/new'
-      preLoaderRoute: typeof CarsNewRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/cars/list': {
-      id: '/cars/list'
-      path: '/cars/list'
-      fullPath: '/cars/list'
-      preLoaderRoute: typeof CarsListRouteImport
+    '/auth/login': {
+      id: '/auth/login'
+      path: '/auth/login'
+      fullPath: '/auth/login'
+      preLoaderRoute: typeof AuthLoginRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/cars/$carId': {
@@ -285,18 +236,67 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof CarsCarIdRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/auth/login': {
-      id: '/auth/login'
-      path: '/auth/login'
-      fullPath: '/auth/login'
-      preLoaderRoute: typeof AuthLoginRouteImport
+    '/cars/list': {
+      id: '/cars/list'
+      path: '/cars/list'
+      fullPath: '/cars/list'
+      preLoaderRoute: typeof CarsListRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/users/update/$userId': {
-      id: '/users/update/$userId'
-      path: '/users/update/$userId'
-      fullPath: '/users/update/$userId'
-      preLoaderRoute: typeof UsersUpdateUserIdRouteImport
+    '/cars/new': {
+      id: '/cars/new'
+      path: '/cars/new'
+      fullPath: '/cars/new'
+      preLoaderRoute: typeof CarsNewRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/rideorders/$rideOrderId': {
+      id: '/rideorders/$rideOrderId'
+      path: '/rideorders/$rideOrderId'
+      fullPath: '/rideorders/$rideOrderId'
+      preLoaderRoute: typeof RideordersRideOrderIdRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/rideorders/list': {
+      id: '/rideorders/list'
+      path: '/rideorders/list'
+      fullPath: '/rideorders/list'
+      preLoaderRoute: typeof RideordersListRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/rideorders/new': {
+      id: '/rideorders/new'
+      path: '/rideorders/new'
+      fullPath: '/rideorders/new'
+      preLoaderRoute: typeof RideordersNewRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/users/$userId': {
+      id: '/users/$userId'
+      path: '/users/$userId'
+      fullPath: '/users/$userId'
+      preLoaderRoute: typeof UsersUserIdRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/users/list': {
+      id: '/users/list'
+      path: '/users/list'
+      fullPath: '/users/list'
+      preLoaderRoute: typeof UsersListRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/users/new': {
+      id: '/users/new'
+      path: '/users/new'
+      fullPath: '/users/new'
+      preLoaderRoute: typeof UsersNewRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/cars/update/$carId': {
+      id: '/cars/update/$carId'
+      path: '/cars/update/$carId'
+      fullPath: '/cars/update/$carId'
+      preLoaderRoute: typeof CarsUpdateCarIdRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/rideorders/update/$rideOrderId': {
@@ -306,11 +306,11 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof RideordersUpdateRideOrderIdRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/cars/update/$carId': {
-      id: '/cars/update/$carId'
-      path: '/cars/update/$carId'
-      fullPath: '/cars/update/$carId'
-      preLoaderRoute: typeof CarsUpdateCarIdRouteImport
+    '/users/update/$userId': {
+      id: '/users/update/$userId'
+      path: '/users/update/$userId'
+      fullPath: '/users/update/$userId'
+      preLoaderRoute: typeof UsersUpdateUserIdRouteImport
       parentRoute: typeof rootRouteImport
     }
   }

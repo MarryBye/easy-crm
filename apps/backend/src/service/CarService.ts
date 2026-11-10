@@ -1,28 +1,29 @@
 import { getRepository } from 'typeorm';
 
-import { Car } from '../orm/entities/cars/Car';
-import { User } from '../orm/entities/users/User';
-import { Car_class, Car_status } from '../orm/entities/cars/types';
 import { CustomError } from 'utils/response/custom-error/CustomError';
+
+import { Car } from '../orm/entities/cars/Car';
+import { Car_class, Car_status } from '../orm/entities/cars/types';
+import { User } from '../orm/entities/users/User';
 
 class CarService {
   private carRepository = getRepository(Car);
   private userRepository = getRepository(User);
 
   private makeCustomError(errors: string[]) {
-    return new CustomError(404, "Raw", errors.join("\n"));
+    return new CustomError(404, 'Raw', errors.join('\n'));
   }
 
   async list(): Promise<{ result: Car[] | null; error: CustomError | null }> {
-    let data = { result: null, error: null };
-    let errors = [];
+    const data = { result: null, error: null };
+    const errors = [];
 
     const cars = await this.carRepository.find({
       relations: ['driver'],
     });
 
     if (cars.length === 0) {
-      errors.push("No cars found.");
+      errors.push('No cars found.');
     }
 
     if (errors.length === 0) {
@@ -35,15 +36,15 @@ class CarService {
   }
 
   async show(id: number | string): Promise<{ result: Car | null; error: CustomError | null }> {
-    let data = { result: null, error: null };
-    let errors = [];
+    const data = { result: null, error: null };
+    const errors = [];
 
     const car = await this.carRepository.findOne(id, {
       relations: ['driver'],
     });
 
     if (!car) {
-      errors.push("Car not found.");
+      errors.push('Car not found.');
     }
 
     if (errors.length === 0) {
@@ -62,8 +63,8 @@ class CarService {
     car_status: Car_status,
     driverId?: number | string,
   ): Promise<{ result: Car | null; error: CustomError | null }> {
-    let data = { result: null, error: null };
-    let errors = [];
+    const data = { result: null, error: null };
+    const errors = [];
     try {
       const car = this.carRepository.create();
       car.mark = mark;
@@ -71,24 +72,23 @@ class CarService {
       car.car_class = car_class;
       car.car_status = car_status;
 
-    if (driverId !== undefined) {
-      const driver = await this.userRepository.findOne(driverId);
-      if (!driver) {
-        errors.push(`Driver with id ${driverId} not found.`);
-      } else {
-        car.driver = driver;
+      if (driverId !== undefined) {
+        const driver = await this.userRepository.findOne(driverId);
+        if (!driver) {
+          errors.push(`Driver with id ${driverId} not found.`);
+        } else {
+          car.driver = driver;
+        }
       }
-    }
 
-    if (errors.length === 0) {
-      data.result = car;
-      await this.carRepository.save(car);
-    } else {
-      data.error = this.makeCustomError(errors);
-    }
+      if (errors.length === 0) {
+        data.result = car;
+        await this.carRepository.save(car);
+      } else {
+        data.error = this.makeCustomError(errors);
+      }
 
-    return data;
-
+      return data;
     } catch (error) {
       errors.push(error.message);
       data.error = this.makeCustomError(errors);
@@ -104,8 +104,8 @@ class CarService {
     car_status?: Car_status,
     driverId?: number | string,
   ): Promise<{ result: Car | null; error: CustomError | null }> {
-    let data = { result: null, error: null };
-    let errors = [];
+    const data = { result: null, error: null };
+    const errors = [];
 
     try {
       const car = await this.carRepository.findOne(id, {
@@ -113,7 +113,7 @@ class CarService {
       });
 
       if (!car) {
-        errors.push("Car not found.");
+        errors.push('Car not found.');
         data.error = this.makeCustomError(errors);
         return data;
       }
@@ -159,8 +159,8 @@ class CarService {
   }
 
   async destroy(id: number | string): Promise<{ result: Car | null; error: CustomError | null }> {
-    let data = { result: null, error: null };
-    let errors = [];
+    const data = { result: null, error: null };
+    const errors = [];
 
     try {
       const { result, error } = await this.show(id);

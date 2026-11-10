@@ -1,4 +1,3 @@
-// ...existing code...
 import React from 'react';
 import { Link, createFileRoute, useParams, useNavigate } from '@tanstack/react-router';
 import { useRideOrder, useDeleteRideOrder } from '@/features/rideorders/api';
@@ -11,7 +10,7 @@ function RideOrderDetailPage() {
   const navigate = useNavigate();
   const { rideOrderId } = useParams({ from: '/rideorders/$rideOrderId' });
   const { data: order, isLoading, isError, error } = useRideOrder(rideOrderId);
-  const deleteRideOrder = useDeleteRideOrder(rideOrderId);
+  const deleteRideOrder = useDeleteRideOrder();
 
   const handleDelete = (id: string) => {
     if (window.confirm('Are you sure you want to delete this ride order?')) {
@@ -54,20 +53,19 @@ function RideOrderDetailPage() {
                 {
                   order?.client?.name
                     ?
-                  <Link to={`/users/${order?.client?.id}`} className="text-blue-500 hover:underline">
+                  <Link to={`/users/${order?.client?.id}` as any} className="text-blue-500 hover:underline">
                     {order?.client?.name ?? 'No client'}
                   </Link>
                     :
                   ' No client'
                 }
-                
               </p>
               <p>
                 <strong>Driver:</strong>{' '}
                 {
                   order?.driver?.name
                     ?
-                  <Link to={`/users/${order?.driver?.id}`} className="text-blue-500 hover:underline">
+                  <Link to={`/users/${order?.driver?.id}` as any} className="text-blue-500 hover:underline">
                     {order?.driver?.name ?? 'No driver'}
                   </Link>
                     :
@@ -79,17 +77,18 @@ function RideOrderDetailPage() {
 
               <div className="mt-4 flex gap-2">
                 <Link
-                  to={`/rideorders/update/${order?.id}`}
+                  to={`/rideorders/update/${order?.id}` as any}
                   className="cursor-pointer text-white font-bold w-full py-2 text-center bg-yellow-500 rounded"
                 >
                   Update
                 </Link>
-                <Link
+                <button
+                  type="button"
                   onClick={() => handleDelete(String(order?.id))}
-                  className="cursor-pointer text-white font-bold w-full py-2 text-center bg-red-500 rounded"
+                  className="cursor-pointer text-white font-bold w-full py-2 text-center bg-red-500 rounded border-none"
                 >
                   Delete
-                </Link>
+                </button>
               </div>
             </td>
           </tr>
@@ -98,4 +97,3 @@ function RideOrderDetailPage() {
     </div>
   );
 }
-// ...existing

@@ -24,7 +24,6 @@ function CarDetailPage() {
 
   return (
     <div className="p-4">
-      
       <div className="flex justify-between items-center mb-4">
         <div className="flex row gap-2 items-center">
             <h1 className="text-2xl font-bold">TaxiCRM</h1>
@@ -64,7 +63,7 @@ function CarDetailPage() {
                 {
                   car.driver?.id != null
                     ?
-                  <Link to={`/users/${car.driver.id}`} className="text-blue-500 hover:underline">
+                  <Link to={`/users/${car.driver.id}` as any} className="text-blue-500 hover:underline">
                     {car.driver.name ?? 'No driver'}
                   </Link>
                     :
@@ -74,17 +73,18 @@ function CarDetailPage() {
 
               <div className="mt-4 flex gap-2">
                 <Link
-                  to={`/cars/update/${car?.id}`}
+                  to={`/cars/update/${car?.id}` as any}
                   className="cursor-pointer text-white font-bold w-full py-2 text-center bg-yellow-500 rounded"
                 >
                   Update
                 </Link>
-                <Link
+                <button
+                  type="button"
                   onClick={() => handleDelete(Number(car?.id))}
-                  className="cursor-pointer text-white font-bold w-full py-2 text-center bg-red-500 rounded"
+                  className="cursor-pointer text-white font-bold w-full py-2 text-center bg-red-500 rounded border-none"
                 >
                   Delete
-                </Link>
+                </button>
               </div>
             </td>
           </tr>

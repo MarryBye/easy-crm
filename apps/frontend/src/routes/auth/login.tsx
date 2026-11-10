@@ -44,8 +44,8 @@ function RouteComponent() {
           {formState.errors.password && <div style={{ color: 'red' }}>{formState.errors.password.message}</div>}
         </div>
 
-        <button type="submit" disabled={loginMutation.isLoading} className='bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600 mt-1'>
-          {loginMutation.isLoading ? 'Logging in...' : 'Login'}
+        <button type="submit" disabled={loginMutation.isPending} className='bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600 mt-1'>
+          {loginMutation.isPending ? 'Logging in...' : 'Login'}
         </button>
 
         {loginMutation.isError && (

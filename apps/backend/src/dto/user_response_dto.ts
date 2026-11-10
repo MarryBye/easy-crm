@@ -22,4 +22,4 @@ export class UserResponseDTO {
       this.car = { id: user.car.id, mark: user.car.mark, model: user.car.model };
     }
   }
-};
+}

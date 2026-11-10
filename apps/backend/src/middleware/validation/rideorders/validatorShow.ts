@@ -8,7 +8,7 @@ export const validatorShow = async (req: Request, res: Response, next: NextFunct
   const errors = [];
 
   if (!id) {
-    errors.push("No id parameter provided.");
+    errors.push('No id parameter provided.');
   }
 
   const error_string = errors.join('\n');

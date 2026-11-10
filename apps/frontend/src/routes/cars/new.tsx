@@ -69,7 +69,7 @@ function RouteComponent() {
           <input {...register('driverId')} className="w-full border px-2 py-1 rounded" placeholder="e.g. 1" />
         </div>
 
-        <button type="submit" className="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600" disabled={create.isLoading}>
+        <button type="submit" className="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600" disabled={create.isPending}>
           Create Car
         </button>
       </form>

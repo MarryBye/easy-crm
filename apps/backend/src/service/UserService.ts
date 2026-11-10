@@ -1,26 +1,27 @@
 import { getRepository } from 'typeorm';
 
+import { CustomError } from 'utils/response/custom-error/CustomError';
+
 import { Role, Language } from '../orm/entities/users/types';
 import { User } from '../orm/entities/users/User';
-import { CustomError } from 'utils/response/custom-error/CustomError';
 
 class UserService {
   private userRepository = getRepository(User);
 
   private makeCustomError(errors: string[]) {
-    return new CustomError(404, "Raw", errors.join("\n"));
+    return new CustomError(404, 'Raw', errors.join('\n'));
   }
 
   async list(): Promise<{ result: User[] | null; error: CustomError | null }> {
-    let data = { result: null, error: null };
-    let errors: string[] = [];
+    const data = { result: null, error: null };
+    const errors: string[] = [];
 
     const users = await this.userRepository.find({
       relations: ['car', 'orders_as_driver', 'orders_as_client'],
     });
 
     if (!users || users.length === 0) {
-      errors.push("No users found.");
+      errors.push('No users found.');
     }
 
     if (errors.length === 0) {
@@ -33,15 +34,15 @@ class UserService {
   }
 
   async show(id: number | string): Promise<{ result: User | null; error: CustomError | null }> {
-    let data = { result: null, error: null };
-    let errors: string[] = [];
+    const data = { result: null, error: null };
+    const errors: string[] = [];
 
     const user = await this.userRepository.findOne(id, {
       relations: ['car', 'orders_as_driver', 'orders_as_client'],
     });
 
     if (!user) {
-      errors.push("User not found.");
+      errors.push('User not found.');
     }
 
     if (errors.length === 0) {
@@ -61,8 +62,8 @@ class UserService {
     role?: Role,
     language?: Language,
   ): Promise<{ result: User | null; error: CustomError | null }> {
-    let data = { result: null, error: null };
-    let errors: string[] = [];
+    const data = { result: null, error: null };
+    const errors: string[] = [];
 
     try {
       const userExists = await this.userRepository.findOne({ where: { email } });
@@ -97,15 +98,19 @@ class UserService {
     }
   }
 
-  async edit(id: number | string, username?: string, name?: string): Promise<{ result: User | null; error: CustomError | null }> {
-    let data = { result: null, error: null };
-    let errors: string[] = [];
+  async edit(
+    id: number | string,
+    username?: string,
+    name?: string,
+  ): Promise<{ result: User | null; error: CustomError | null }> {
+    const data = { result: null, error: null };
+    const errors: string[] = [];
 
     try {
       const user = await this.userRepository.findOne(id);
 
       if (!user) {
-        errors.push("User not found.");
+        errors.push('User not found.');
         data.error = this.makeCustomError(errors);
         return data;
       }
@@ -134,8 +139,8 @@ class UserService {
   }
 
   async destroy(id: number | string): Promise<{ result: User | null; error: CustomError | null }> {
-    let data = { result: null, error: null };
-    let errors: string[] = [];
+    const data = { result: null, error: null };
+    const errors: string[] = [];
 
     try {
       const { result, error } = await this.show(id);

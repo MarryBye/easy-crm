@@ -1,13 +1,21 @@
 import { Request, Response, NextFunction } from 'express';
 
 import { RideOrderService } from 'service/RideOrderService';
+
 import { RideOrderResponseDTO } from '../../dto/rideorder_response_dto';
 
 export const create = async (req: Request, res: Response, next: NextFunction) => {
   const rideOrderService = new RideOrderService();
   const { order_status, payment_type, start_date, end_date, driverId, clientId } = req.body;
 
-  const { result, error } = await rideOrderService.create(order_status, payment_type, clientId, driverId, start_date, end_date);
+  const { result, error } = await rideOrderService.create(
+    order_status,
+    payment_type,
+    clientId,
+    driverId,
+    start_date,
+    end_date,
+  );
 
   if (error) {
     return next(error);

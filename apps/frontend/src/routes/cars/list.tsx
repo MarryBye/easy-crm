@@ -1,4 +1,4 @@
-import { Link, createFileRoute, useParams, useNavigate } from '@tanstack/react-router';
+import { Link, createFileRoute, useNavigate } from '@tanstack/react-router';
 import { useCars, useDeleteCar } from '@/features/cars/api';
 
 export const Route = createFileRoute('/cars/list')({
@@ -61,7 +61,7 @@ function CarsListPage() {
               <td className="py-2 px-4 border-b">{car.car_status}</td>
               <td className="py-2 px-4 border-b">
                 {car.driver ? (
-                  <Link to={`/users/${car.driver.id}`} className="text-blue-500 hover:underline">
+                  <Link to={`/users/${car.driver.id}` as any} className="text-blue-500 hover:underline">
                     {car.driver.name}
                   </Link>
                 ) : (
@@ -70,20 +70,21 @@ function CarsListPage() {
               </td>
               <td className="py-2 px-4 border-b">
                 <Link 
-                  to={`/cars/update/${car.id}`} 
+                  to={`/cars/update/${car.id}` as any} 
                   className="cursor-pointer text-yellow-500 px-2 py-1"
                 >
                   Edit
                 </Link>
-                <Link 
-                  onClick={() => handleDelete(car.id)} 
+                <button 
+                  type="button"
+                  onClick={() => handleDelete(String(car.id))} 
                   disabled={(deleteCarMutation as any).isPending} 
-                  className="cursor-pointer text-red-500 px-2 py-1"
+                  className="cursor-pointer text-red-500 px-2 py-1 bg-transparent border-none"
                 >
                   Delete
-                </Link>
+                </button>
                 <Link 
-                  to={`/cars/${car.id}`} 
+                  to={`/cars/${car.id}` as any} 
                   className="cursor-pointer text-blue-500 px-2 py-1"
                 >
                   Details

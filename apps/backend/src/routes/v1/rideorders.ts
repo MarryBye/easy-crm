@@ -4,7 +4,12 @@ import { list, show, edit, destroy, create } from 'controllers/rideorders';
 import { checkJwt } from 'middleware/checkJwt';
 import { checkRole } from 'middleware/checkRole';
 
-import { validatorCreate, validatorDestroy, validatorEdit, validatorShow } from '../../middleware/validation/rideorders';
+import {
+  validatorCreate,
+  validatorDestroy,
+  validatorEdit,
+  validatorShow,
+} from '../../middleware/validation/rideorders';
 
 const router = Router();
 

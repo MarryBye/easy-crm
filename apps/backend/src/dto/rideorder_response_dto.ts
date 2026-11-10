@@ -1,8 +1,8 @@
-import { Car } from '../orm/entities/cars/Car';
-import { RideOrder } from '../orm/entities/ride_orders/RideOrder';
-import { Order_status, Payment_type } from '../orm/entities/ride_orders/types'
 import { UserResponseDTO } from '../dto/user_response_dto';
+import { Car } from '../orm/entities/cars/Car';
 import { Car_class, Car_status } from '../orm/entities/cars/types';
+import { RideOrder } from '../orm/entities/ride_orders/RideOrder';
+import { Order_status, Payment_type } from '../orm/entities/ride_orders/types';
 
 export class RideOrderResponseDTO {
   id: number;

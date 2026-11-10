@@ -54,7 +54,7 @@ function RouteComponent() {
           <input {...register('name', { required: 'Name required' })} className="w-full border px-2 py-1 rounded" />
         </div>
 
-        <button type="submit" className="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600" disabled={update.isLoading}>
+        <button type="submit" className="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600" disabled={update.isPending}>
           Update User
         </button>
       </form>

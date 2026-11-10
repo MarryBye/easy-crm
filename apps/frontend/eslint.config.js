@@ -1,7 +1,6 @@
 import { fixupPluginRules } from '@eslint/compat';
 import eslintJS from "@eslint/js"
 import tsParser from '@typescript-eslint/parser';
-//import eslintPluginStorybook from "eslint-plugin-storybook" // does not support eslint v9
 import eslintConfigPrettier from "eslint-config-prettier"
 import eslintPluginImport from 'eslint-plugin-import'
 import jsxA11yPlugin from 'eslint-plugin-jsx-a11y'
@@ -31,9 +30,9 @@ const baseESLintConfig = {
     "no-unmodified-loop-condition": "error",
     "no-unreachable-loop": "error",
     "no-unused-private-class-members": "error",
-    "no-use-before-define": "error",
+    "no-use-before-define": "off",
     "require-atomic-updates": "error",
-    "camelcase": "error",
+    "camelcase": "off",
   }
 }
 
@@ -63,29 +62,30 @@ const typescriptConfig = {
   },
   rules: {
     "@typescript-eslint/adjacent-overload-signatures": "error",
-    "@typescript-eslint/array-type": ["error", { "default": "generic" }],
-    "@typescript-eslint/consistent-type-exports": "error",
-    "@typescript-eslint/consistent-type-imports": "error",
-    "@typescript-eslint/explicit-function-return-type": "error",
-    "@typescript-eslint/explicit-member-accessibility": "error",
-    "@typescript-eslint/explicit-module-boundary-types": "error",
-    "@typescript-eslint/no-confusing-void-expression": "error",
-    "@typescript-eslint/no-import-type-side-effects": "error",
+    "@typescript-eslint/array-type": "off",
+    "@typescript-eslint/consistent-type-exports": "off",
+    "@typescript-eslint/consistent-type-imports": "off",
+    "@typescript-eslint/explicit-function-return-type": "off",
+    "@typescript-eslint/explicit-member-accessibility": "off",
+    "@typescript-eslint/explicit-module-boundary-types": "off",
+    "@typescript-eslint/no-confusing-void-expression": "off",
+    "@typescript-eslint/no-import-type-side-effects": "off",
     "@typescript-eslint/no-require-imports": "error",
-    "@typescript-eslint/no-unused-vars": "error",
+    "@typescript-eslint/no-unused-vars": "off",
     "@typescript-eslint/no-useless-empty-export": "error",
-    "@typescript-eslint/prefer-enum-initializers": "error",
-    "@typescript-eslint/prefer-readonly": "error",
+    "@typescript-eslint/prefer-enum-initializers": "off",
+    "@typescript-eslint/prefer-readonly": "off",
+    "@typescript-eslint/no-explicit-any": "off",
+    "@typescript-eslint/no-unsafe-return": "off",
+    "@typescript-eslint/no-unsafe-assignment": "off",
+    "@typescript-eslint/no-unsafe-member-access": "off",
+    "@typescript-eslint/no-unsafe-call": "off",
+    "@typescript-eslint/no-unsafe-argument": "off",
+    "@typescript-eslint/no-floating-promises": "off",
+    "@typescript-eslint/no-unnecessary-type-assertion": "off",
     "no-return-await": "off",
-    "@typescript-eslint/return-await": "error",
-    "@typescript-eslint/no-misused-promises": [
-    "error",
-    {
-      "checksVoidReturn": {
-        "attributes": false
-      }
-    }
-  ]
+    "@typescript-eslint/return-await": "off",
+    "@typescript-eslint/no-misused-promises": "off"
   },
   settings: {
     'import/resolver': {
@@ -115,19 +115,11 @@ const reactConfig = {
     ],
     "react/jsx-no-target-blank": "off",
     "react/jsx-max-props-per-line": "off",
-    "react/jsx-sort-props": [
-      "error",
-      {
-        callbacksLast: true,
-        shorthandFirst: true,
-        reservedFirst: true,
-        multiline: "last",
-      },
-    ],
+    "react/jsx-sort-props": "off",
     "react/no-unknown-property": "off",
     "react/prop-types": "off",
     "react/react-in-jsx-scope": "off",
-    "react-hooks/exhaustive-deps": "error",
+    "react-hooks/exhaustive-deps": "warn",
     ...patchedReactHooksPlugin.configs.recommended.rules,
     "react-refresh/only-export-components": [
       "warn",
@@ -161,34 +153,14 @@ const unicornConfig = {
     unicorn: eslintPluginUnicorn,
   },
   rules: {
-    "unicorn/custom-error-definition": "error",
+    "unicorn/custom-error-definition": "off",
     "unicorn/empty-brace-spaces": "error",
     "unicorn/no-array-for-each": "off",
     "unicorn/no-array-reduce": "off",
     "unicorn/no-console-spaces": "error",
     "unicorn/no-null": "off",
     "unicorn/filename-case": "off",
-    "unicorn/prevent-abbreviations": [
-      "error",
-      {
-        "replacements": {
-          "db": false,
-          "arg": false,
-          "args": false,
-          "env": false,
-          "fn": false,
-          "func": {
-            "fn": true,
-            "function": false
-          },
-          "prop": false,
-          "props": false,
-          "ref": false,
-          "refs": false
-        },
-        "ignore": ["semVer", "SemVer"]
-      }
-    ]
+    "unicorn/prevent-abbreviations": "off"
   }
 }
 

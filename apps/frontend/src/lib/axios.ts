@@ -2,7 +2,7 @@ import axios from 'axios';
 import { useAuthStore } from '@/store/useAuthStore';
 
 const apiClient = axios.create({
-  baseURL: import.meta.env.VITE_API_BASE_URL,
+  baseURL: import.meta.env.VITE_API_BASE_URL || '/v1',
   headers: {
     'Content-Type': 'application/json',
   },
@@ -18,15 +18,15 @@ apiClient.interceptors.request.use((config) => {
 
 apiClient.interceptors.response.use(
   (response) => response,
-  (error) => {
-    console.error('API Error:', error.response || error.message);
+  (error: unknown) => {
+    console.error('API Error:', (error as any)?.response || (error as any)?.message);
 
-    if (error.response?.status === 401) {
+    if ((error as any)?.response?.status === 401) {
       useAuthStore.getState().clearToken();
       window.location.href = '/login';
     }
 
-    return Promise.reject(error);
+    return Promise.reject(error instanceof Error ? error : new Error(String(error)));
   }
 );
 
