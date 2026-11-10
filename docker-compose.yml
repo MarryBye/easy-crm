@@ -1,18 +1,18 @@
 services:
   postgres:
     image: postgres:16-alpine
-    container_name: taxi-crm-postgres
+    container_name: easy-crm-postgres
     restart: unless-stopped
     environment:
       POSTGRES_USER: ${POSTGRES_USER:-postgres}
       POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-postgres}
-      POSTGRES_DB: ${POSTGRES_DB:-taxi_crm}
+      POSTGRES_DB: ${POSTGRES_DB:-easy_crm}
     ports:
       - "${POSTGRES_PORT:-5432}:5432"
     volumes:
       - postgres_data:/var/lib/postgresql/data
     healthcheck:
-      test: ["CMD-SHELL", "pg_isready -U ${POSTGRES_USER:-postgres} -d ${POSTGRES_DB:-taxi_crm}"]
+      test: ["CMD-SHELL", "pg_isready -U ${POSTGRES_USER:-postgres} -d ${POSTGRES_DB:-easy_crm}"]
       interval: 10s
       timeout: 5s
       retries: 5
@@ -24,7 +24,7 @@ services:
     build:
       context: ./apps/backend
       dockerfile: Dockerfile
-    container_name: taxi-crm-backend
+    container_name: easy-crm-backend
     restart: unless-stopped
     environment:
       NODE_ENV: production
@@ -33,8 +33,8 @@ services:
       PG_PORT: 5432
       POSTGRES_USER: ${POSTGRES_USER:-postgres}
       POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-postgres}
-      POSTGRES_DB: ${POSTGRES_DB:-taxi_crm}
-      JWT_SECRET: ${JWT_SECRET:-dev_jwt_secret_key_taxi_crm_local_only}
+      POSTGRES_DB: ${POSTGRES_DB:-easy_crm}
+      JWT_SECRET: ${JWT_SECRET:-dev_jwt_secret_key_easy_crm_local_only}
       JWT_EXPIRATION: ${JWT_EXPIRATION:-120m}
     ports:
       - "${PORT:-4000}:4000"
@@ -54,7 +54,7 @@ services:
     build:
       context: ./apps/frontend
       dockerfile: Dockerfile
-    container_name: taxi-crm-frontend
+    container_name: easy-crm-frontend
     restart: unless-stopped
     ports:
       - "80:80"

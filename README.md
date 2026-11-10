@@ -1,4 +1,4 @@
-# Taxi CRM — Fleet & Ride Order Management Platform
+# Easy CRM — Fleet & Ride Order Management Platform
 
 [![CI](https://github.com/MarryBye/easy-crm/actions/workflows/ci.yml/badge.svg)](https://github.com/MarryBye/easy-crm/actions/workflows/ci.yml)
 [![TypeScript](https://img.shields.io/badge/TypeScript-5.8-blue.svg)](https://www.typescriptlang.org/)
@@ -182,10 +182,10 @@ pnpm install
 
 ```bash
 # Run migrations
-pnpm --filter @taxi-crm/backend run migration:run:dev
+pnpm --filter @easy-crm/backend run migration:run:dev
 
 # Seed initial users, cars, and ride orders
-pnpm --filter @taxi-crm/backend run seed:run:dev
+pnpm --filter @easy-crm/backend run seed:run:dev
 ```
 
 #### 4. Launch Development Servers

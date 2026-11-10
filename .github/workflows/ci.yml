@@ -69,11 +69,11 @@ jobs:
 
       - name: Run Database Migrations & Seeds
         run: |
-          pnpm --filter @taxi-crm/backend run migration:run:dev
-          pnpm --filter @taxi-crm/backend run seed:run:dev
+          pnpm --filter @easy-crm/backend run migration:run:dev
+          pnpm --filter @easy-crm/backend run seed:run:dev
 
       - name: Run Backend Tests
-        run: pnpm --filter @taxi-crm/backend run test
+        run: pnpm --filter @easy-crm/backend run test
 
       - name: Run Frontend Tests
-        run: pnpm --filter @taxi-crm/frontend run test
+        run: pnpm --filter @easy-crm/frontend run test

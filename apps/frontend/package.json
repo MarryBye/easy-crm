@@ -1,7 +1,7 @@
 {
-  "name": "@taxi-crm/frontend",
+  "name": "@easy-crm/frontend",
   "author": "Viktor Lukianov",
-  "description": "Taxi CRM frontend client built with React 19, Vite, TanStack Router, TanStack Query, and TanStack Table.",
+  "description": "Easy CRM frontend client built with React 19, Vite, TanStack Router, TanStack Query, and TanStack Table.",
   "keywords": [
     "react",
     "vite",

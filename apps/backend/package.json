@@ -1,7 +1,7 @@
 {
-  "name": "@taxi-crm/backend",
+  "name": "@easy-crm/backend",
   "version": "1.0.0",
-  "description": "Taxi CRM RESTful API built with TypeScript, Express, TypeORM, and PostgreSQL.",
+  "description": "Easy CRM RESTful API built with TypeScript, Express, TypeORM, and PostgreSQL.",
   "author": "Viktor Lukianov",
   "license": "MIT",
   "scripts": {
